@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+    {% block title %}view events{% endblock %}
+
+    {% block navbar %}
+    {% include 'includes/_navbar.html' %}
+    {% endblock %}
+    
+
+    {% block content %}
+      <div class="container">
+          {% include 'includes/_messages.html' %}
+             <h3> Available lists of events</h3>
+      </div>
+      <hr>
+      <div class = "row">
+        <div class = "col-md-4">
+        <table class="table table-stripped" id="owned_stock_table">
+          <thead>
+          <tr>
+            <td>Title</td>
+            <td>Location</td>
+            <td>Category</td>
+            <td>Description</td>
+            </tr>
+            </thead>
+            <tbody>
+              {% for item in event_list %}
+              <tr>
+                <td>{{item.title}}</td>
+                <td>{{item.location}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.description}}</td>
+                
+                </tr >
+        
+               {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+     {% endblock %}

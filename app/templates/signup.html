@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css') }}" />
+{% block title %}sign in{% endblock %}
+{% endblock %}
+
+    {% block content %}
+      <div class="container">
+          {% include 'includes/_messages.html' %}
+             <h3> Please fill in the registration form below to sign in</h3>
+      </div>
+      <hr>
+      <div class="container" id="registration-form">
+            <div class="image"></div>
+            <div class="frm">
+                <h3>Sign up</h3>
+
+	
+		<form method="POST" action ="" > {# Default action to the same page #}
+
+        {# Display filed's validation error messages, if any #}
+        
+        {{ form.csrf_token }}{# Renders any hidden fields, including the CSRF #}
+        <div class="form-group">
+        {{ form.username.label }}   {{form.username(class="form-control")}}
+      </div>
+      <ul class = "errors">
+          {% for error in form.username.errors %}
+          <span style="color: red;"><li> {{ error }}</li></span>
+          {% endfor %}
+        </ul>
+      <div class="form-group">
+        {{ form.email.label }}      {{form.email(class="form-control")}}
+      </div>
+      <ul class = "errors">
+          {% for error in form.email.errors %}
+          <span style="color: red;"><li>{{ error }}</li></span>
+          {% endfor %}
+        </ul>
+      <div class="form-group">
+        {{ form.password.label }}   {{form.password(class="form-control")}}
+      </div>
+      <ul class = "errors">
+          {% for error in form.password.errors %}
+          <span style="color: red;"><li>{{ error }}</li></span>
+          {% endfor %}
+        </ul>
+      <div class="form-group">
+        {{ form.confirm.label }}    {{form.confirm(class="form-control")}}
+      </div>
+      <ul class = "errors">
+          {% for error in form.confirm.errors %}
+          <span style="color: red;"><li>{{ error }}</li></span>
+          {% endfor %}
+        </ul>
+      <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg">Sign Up</button>
+      </div>
+        </form>
+            
+        
+
+            </div>
+        
+
+        {% endblock %}
+       

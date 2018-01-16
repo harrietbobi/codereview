@@ -1,0 +1,12 @@
+{# Display flash messages, if any, for all pages #}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class='flashes'>
+    {% for message in messages %}<p class="alert alert-success fade in">{{ message }}</p>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+

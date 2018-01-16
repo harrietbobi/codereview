@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<style>
+  .centreit {
+    margin: 100px;
+  }
+  </style>
+{% block title %}create events{% endblock %}
+{% endblock %}
+
+   
+
+    {% block navbar %}
+    {% include 'includes/_navbar.html' %}
+    {% endblock %}
+    
+
+    {% block content %}
+      <div class="container">
+          {% include 'includes/_messages.html' %}
+             <h3> You can now create an event of your choice</h3>
+      </div>
+      <hr>
+      <div class="centreit">
+          <form method="POST" action ="{{url_for('create')}}" > {# Default action to the same page #}
+
+              {# Display filed's validation error messages, if any #}
+              
+              {{ form.csrf_token }}{# Renders any hidden fields, including the CSRF #}
+              <div class="form-group"> <!-- Event Title field -->
+              {{ form.title.label }}   {{form.title(class="form-control")}}
+            </div>
+            <ul class = "errors">
+                {% for error in form.title.errors %}
+                <span style="color: red;"><li> {{ error }}</li></span>
+                {% endfor %}
+              </ul>
+            <div class="form-group"> <!-- Event Location -->
+              {{ form.location.label }}      {{form.location(class="form-control")}}
+            </div>
+            <ul class = "errors">
+                {% for error in form.location.errors %}
+                <span style="color: red;"><li>{{ error }}</li></span>
+                {% endfor %}
+              </ul>
+            <div class="form-group">  <!-- Event category -->
+              {{ form.category.label }}   {{form.category(class="form-control")}}
+            </div>
+            <ul class = "errors">
+                {% for error in form.category.errors %}
+                <span style="color: red;"><li>{{ error }}</li></span>
+                {% endfor %}
+              </ul>
+            <div class="form-group"> <!-- Descrition field -->
+              {{ form.description.label }}    {{form.description(class="form-control", cols="40", rows="10")}}
+            </div>
+            <ul class = "errors">
+                {% for error in form.description.errors %}
+                <span style="color: red;"><li>{{ error }}</li></span>
+                {% endfor %}
+              </ul>
+              <div class="form-group">
+                  <button class="btn btn-primary " name="submit" type="submit">Create</button>
+                </div>
+              </form>
+ 
+        </div>	
+       
+                    
+     
+      
+     {% endblock %}
+

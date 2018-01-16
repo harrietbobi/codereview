@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/stylesform.css') }}"/>
+{% block title %}sign in{% endblock %}
+{% endblock %}
+
+
+   
+
+    {% block content %}
+
+    
+    <div class="container">
+        {% include 'includes/_messages.html' %}
+        <!-- bootstrap alert message 
+        <div class="alert alert-success fade in">
+                
+                        <a href='signin.html' class="close" data-dismiss="alert">&times;</a>
+                
+                        <strong>Success!</strong> Your message has been sent successfully.
+                
+                    </div>
+                
+         bootstrap alert message ends here -->
+
+        <h3> Please sign in to do more</h3>
+    </div>
+    <hr>
+    <div class="container" id="log-in-form">
+        <div class="heading">
+            <h1>Log In Your Account</h1>
+        </div>
+        <form method="POST" action ="" > {# Default action to the same page #}
+          {{ form.csrf_token }}{# Renders any hidden fields, including the CSRF #}
+          <div class="form-group">
+          {{ form.username.label }}   {{form.username(class="form-control")}}
+        </div>
+        <ul class = "errors">
+          {% for error in form.username.errors %}
+          <span style="color: red;"><li> {{ error }}</li></span>
+          {% endfor %}
+        </ul>
+        <div class="form-group">
+          {{ form.password.label }}   {{form.password(class="form-control")}}
+        </div>
+        <ul class = "errors">
+            {% for error in form.password.errors %}
+            <span style="color: red;"><li>{{ error }}</li></span>
+            {% endfor %}
+          </ul>
+              
+         <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </div>
+        </form>
+            
+    </div>
+
+
+
+    <br>
+    <br>
+    {% endblock %}
